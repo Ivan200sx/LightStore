@@ -10,37 +10,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Route
 public class MainView extends VerticalLayout {
 
-    public MainView() {
-        VerticalLayout todosList = new VerticalLayout();
-
-
-        TextField taskField = new TextField();
-
-
-        Button addButton = new Button("Add");
-
-
-        addButton.addClickShortcut(Key.ENTER);
-        addButton.addClickListener(click -> {
-
-
-
-            Checkbox checkbox = new Checkbox(taskField.getValue());
-            todosList.add(checkbox);
-        });
-        add(
-
-
-                new H1("Vaadin Todo"),
-                todosList,
-                new HorizontalLayout(
-                        taskField,
-                        addButton
-                )
-        );
+    @Autowired
+    public MainView(ToDo toDo) {
+        add(toDo);
     }
 }
